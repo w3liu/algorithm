@@ -11,11 +11,9 @@ func main() {
 func minHeightShelves(books [][]int, shelf_width int) int {
 	n := len(books)
 	dp := make([]int, n+1)
-	for i := 0; i < n+1; i++ {
-		dp[i] = 1000000
-	}
 	dp[0] = 0
 	for i := 1; i < n+1; i++ {
+		dp[i] = 1000000
 		tw, j, h := 0, i, 0
 		for j > 0 {
 			tw = tw + books[j-1][0]
