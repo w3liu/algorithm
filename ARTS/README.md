@@ -9,9 +9,9 @@
 - 主要是为了建立你的影响力，能够输出价值观。分享一篇有观点和思考的技术文章
 
 
-## YYYY.MM.DD-YYYY.MM.DD
+# YYYY.MM.DD-YYYY.MM.DD
 
-### Algorithm
+## Algorithm
 1. 题目
 ```
 
@@ -28,7 +28,7 @@
 4. 说明
 
 
-### Review
+## Review
 1. 原文链接
 
 
@@ -38,9 +38,9 @@
 3. 点评
 
 
-### Tip
-#### 标题
+## Tip
+### 标题
 
 
-### Share
-#### 标题
+## Share
+### 标题
