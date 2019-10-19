@@ -11,10 +11,14 @@ func relativeSortArray(arr1 []int, arr2 []int) []int {
 
 	tempMap := make(map[int]int)
 	tempArr := make([]int, 0)
-	lastArr := make([]int, 0)
+	lastMap := make(map[int]int)
+	max := 0
 
 	for _, x := range arr1 {
 		have := false
+		if x > max {
+			max = x
+		}
 		for _, y := range arr2 {
 			if x == y {
 				have = true
@@ -26,7 +30,11 @@ func relativeSortArray(arr1 []int, arr2 []int) []int {
 			}
 		}
 		if !have {
-			lastArr = append(lastArr, x)
+			if v, ok := lastMap[x]; ok {
+				lastMap[x] = v + 1
+			} else {
+				lastMap[x] = 1
+			}
 		}
 	}
 	for _, x := range arr2 {
@@ -34,13 +42,12 @@ func relativeSortArray(arr1 []int, arr2 []int) []int {
 			tempArr = append(tempArr, x)
 		}
 	}
-	for i := 0; i < len(lastArr); i++ {
-		for k := i + 1; k < len(lastArr); k++ {
-			if lastArr[i] > lastArr[k] {
-				lastArr[k], lastArr[i] = lastArr[i], lastArr[k]
+	for x := 1; x <= max; x++ {
+		if v, ok := lastMap[x]; ok {
+			for i := 0; i < v; i++ {
+				tempArr = append(tempArr, x)
 			}
 		}
 	}
-	tempArr = append(tempArr, lastArr...)
 	return tempArr
 }
