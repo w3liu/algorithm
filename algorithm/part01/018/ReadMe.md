@@ -20,7 +20,7 @@
 解释：链表中有一个环，其尾部连接到第二个节点。
 ```
 
-![qr](./images/142_1.png)
+![qr](images/142_1.png)
 
 ```
 示例 2：
@@ -29,7 +29,7 @@
 输出：tail connects to node index 0
 解释：链表中有一个环，其尾部连接到第一个节点。
 ```
-![qr](./images/142_2.png)
+![qr](images/142_2.png)
 
 
 ```
@@ -39,4 +39,4 @@
 输出：no cycle
 解释：链表中没有环。
 ```
-![qr](./images/142_3.png)
+![qr](images/142_3.png)
