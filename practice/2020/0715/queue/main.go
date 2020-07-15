@@ -36,7 +36,14 @@ func NewArrayQueue(n int) *ArrayQueue {
 // 入队
 func (q *ArrayQueue) enQueue(item string) bool {
 	if q.tail == q.n {
-		return false
+		if q.head == 0 {
+			return false
+		}
+		for i := q.head; i < q.n; i++ {
+			q.items[i-q.head] = q.items[i]
+		}
+		q.tail = q.tail - q.head
+		q.head = 0
 	}
 	q.items[q.tail] = item
 	q.tail++
