@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 	arr := []int{1, 3, 2, 8, 7, 9, 4, 6, 5}
-	arr = chose(arr)
+	arr = mSort(arr)
 	printArr(arr)
 }
 
@@ -70,4 +70,32 @@ func chose(arr []int) []int {
 		}
 	}
 	return arr
+}
+
+// 归并排序
+func mSort(arr []int) []int {
+	if len(arr) <= 1 {
+		return arr
+	}
+	mid := len(arr) / 2
+	left := mSort(arr[:mid])
+	right := mSort(arr[mid:])
+	return merge(left, right)
+}
+
+func merge(left, right []int) []int {
+	l, r := 0, 0
+	temp := make([]int, 0, len(left)+len(right))
+	for l < len(left) && r < len(right) {
+		if left[l] > right[r] {
+			temp = append(temp, right[r])
+			r++
+		} else {
+			temp = append(temp, left[l])
+			l++
+		}
+	}
+	temp = append(temp, left[l:]...)
+	temp = append(temp, right[r:]...)
+	return temp
 }
