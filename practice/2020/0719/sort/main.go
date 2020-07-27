@@ -3,8 +3,8 @@ package main
 import "fmt"
 
 func main() {
-	arr := []int{1, 3, 2, 8, 7, 9, 4, 6, 5}
-	arr = mSort1(arr)
+	arr := []int{9, 1, 3, 2, 11, 10, 8, 7, 9, 4, 4, 6, 5, 0}
+	qSort1(arr)
 	printArr(arr)
 }
 
@@ -20,9 +20,7 @@ func bubble(arr []int) []int {
 		var flag bool
 		for j := 0; j < len(arr)-i-1; j++ {
 			if arr[j] > arr[j+1] {
-				temp := arr[j+1]
-				arr[j+1] = arr[j]
-				arr[j] = temp
+				arr[j], arr[j+1] = arr[j+1], arr[j]
 				flag = true
 			}
 		}
@@ -55,7 +53,7 @@ func insert(arr []int) []int {
 
 // 选择排序
 func chose(arr []int) []int {
-	var temp, index int
+	var index int
 	for i := 0; i < len(arr); i++ {
 		index = i
 		for j := i + 1; j < len(arr); j++ {
@@ -64,9 +62,7 @@ func chose(arr []int) []int {
 			}
 		}
 		if index > i {
-			temp = arr[index]
-			arr[index] = arr[i]
-			arr[i] = temp
+			arr[index], arr[i] = arr[i], arr[index]
 		}
 	}
 	return arr
@@ -100,83 +96,23 @@ func merge(left, right []int) []int {
 	return temp
 }
 
-// 冒泡排序
-func bubble1(arr []int) []int {
-	if len(arr) == 0 {
-		return arr
+// 快速排序
+func qSort(arr []int) {
+	if len(arr) < 1 {
+		return
 	}
-	for i := 0; i < len(arr); i++ {
-		var flag bool
-		for j := 0; j < len(arr)-i-1; j++ {
-			if arr[j] > arr[j+1] {
-				arr[j], arr[j+1] = arr[j+1], arr[j]
-				flag = true
-			}
-		}
-		if !flag {
-			break
-		}
-	}
-	return arr
-}
-
-// 插入排序
-func insert1(arr []int) []int {
-	for i := 0; i < len(arr); i++ {
-		for j := i + 1; j < len(arr); j++ {
-			if arr[i] > arr[j] {
-				temp := arr[j]
-				for k := j; k > i; k-- {
-					arr[k] = arr[k-1]
-				}
-				arr[i] = temp
-				break
-			}
-		}
-	}
-	return arr
-}
-
-// 选择排序
-func chose1(arr []int) []int {
-	var index int
-	for i := 0; i < len(arr); i++ {
-		index = i
-		for j := i + 1; j < len(arr); j++ {
-			if arr[index] > arr[j] {
-				index = j
-			}
-		}
-		temp := arr[index]
-		arr[index] = arr[i]
-		arr[i] = temp
-	}
-	return arr
-}
-
-func mSort1(arr []int) []int {
-	if len(arr) <= 1 {
-		return arr
-	}
-	mid := len(arr) / 2
-	left := mSort1(arr[:mid])
-	right := mSort1(arr[mid:])
-	return merge(left, right)
-}
-
-func merge1(left, right []int) []int {
-	var x, y int
-	arr := make([]int, 0, x+y)
-	for x < len(left) && y < len(right) {
-		if left[x] > right[y] {
-			arr = append(arr, right[y])
-			y++
+	mid, i := arr[0], 1
+	head, tail := 0, len(arr)-1
+	for head < tail {
+		if mid < arr[i] {
+			arr[tail], arr[i] = arr[i], arr[tail]
+			tail--
 		} else {
-			arr = append(arr, left[x])
-			x++
+			arr[head], arr[i] = arr[i], arr[head]
+			i++
+			head++
 		}
 	}
-	arr = append(arr, left[x:]...)
-	arr = append(arr, right[y:]...)
-	return arr
+	qSort(arr[:head])
+	qSort(arr[head+1:])
 }
