@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 	arr := []int{9, 1, 3, 2, 11, 10, 8, 7, 9, 4, 4, 6, 5, 0}
-	qSort1(arr)
+	qSort(arr)
 	printArr(arr)
 }
 
@@ -98,7 +98,7 @@ func merge(left, right []int) []int {
 
 // 快速排序
 func qSort(arr []int) {
-	if len(arr) < 1 {
+	if len(arr) <= 1 {
 		return
 	}
 	mid, i := arr[0], 1
