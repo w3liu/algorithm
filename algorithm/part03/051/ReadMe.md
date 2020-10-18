@@ -21,6 +21,44 @@
 
 ### 3. 解答：
 ```golang
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
 
+func rightSideView(root *TreeNode) []int {
+	if root == nil {
+		return []int{}
+	}
+	queue := list.New()
+	result := make([]int, 0)
+	queue.PushFront(root)
+	for queue.Len() > 0 {
+		size := queue.Len()
+		for i := 0; i < size; i++ {
+			elem := queue.Front()
+			queue.Remove(elem)
+			node := elem.Value.(*TreeNode)
+			if i == 0 {
+				result = append(result, node.Val)
+			}
+			if node.Right != nil {
+				queue.PushBack(node.Right)
+			}
+			if node.Left != nil {
+				queue.PushBack(node.Left)
+			}
+		}
+
+	}
+	return result
+}
 ```
 ### 4. 说明
+
+1. 定义一个队列用于存放每一层的节点
+2. queque.len()表示一层总共有多少节点
+3. 遍历这一层的全部节点，将最右边的节点存入结果数组
+4. 接着先将有节点存入队列，再将左节点存入结果数组
+5. 最后返回结果数组
