@@ -1,0 +1,64 @@
+## Algorithm
+### 1. 题目
+```
+第 k 个数
+```
+### 2. 题目描述
+```
+有些数的素因子只有 3，5，7，请设计一个算法找出第 k 个数。注意，不是必须有这些素因子，而是必须不包含其他的素因子。例如，前几个数按顺序应该是 1，3，5，7，9，15，21。
+示例 1:
+
+输入: k = 5
+
+输出: 9
+```
+
+### 3. 解答：
+```golang
+func getKthMagicNumber(k int) int {
+	numArr := make([]int, k, k)
+	p1, p2, p3 := 0, 0, 0
+	numArr[0] = 1
+	for i := 1; i < k; i++ {
+		numArr[i] = int(math.Min(float64(numArr[p1]*3), math.Min(float64(numArr[p2]*5), float64(numArr[p3]*7))))
+		if numArr[i] == numArr[p1]*3 {
+			p1++
+		}
+		if numArr[i] == numArr[p2]*5 {
+			p2++
+		}
+		if numArr[i] == numArr[p3]*7 {
+			p3++
+		}
+	}
+	return numArr[k-1]
+}
+```
+### 4. 说明
+不难发现，一个丑数总是由前面的某一个丑数 x3 / x5 / x7 得到。
+反过来说也是一样的，一个丑数 x3 / x5 / x7 就会得到某一个更大的丑数。
+
+如果把丑数数列叫做 ugly[i]，那么考虑一下三个数列：
+1. ugly[0]*3,ugly[1]*3,ugly[2]*3,ugly[3]*3,ugly[4]*3,ugly[5]*3……
+2. ugly[0]*5,ugly[1]*5,ugly[2]*5,ugly[3]*5,ugly[4]*5,ugly[5]*5……
+3. ugly[0]*7,ugly[1]*7,ugly[2]*7,ugly[3]*7,ugly[4]*7,ugly[5]*7……
+
+上面这个三个数列合在一起就形成了新的、更长的丑数数列。
+
+如果合在一起呢？这其实就是一个合并有序线性表的问题。
+
+定义三个index 分别指向上面三个数列，下一个丑数一定是三个 index 代表的值中最小的那个。然后相应 index++ 即可。
+
+举个例子
+初始值 ugly[0]=1; index1=0; index2=0; index3=0
+
+
+ugly[1]=Min(ugly[index1]*3,ugly[index2]*5,ugly[index3]*7)
+=Min(1*3,1*5,1*7)
+=3
+于是 index1++;
+
+ugly[2]=Min(ugly[index1]*3,ugly[index2]*5,ugly[index3]*7)
+=Min(3*3,1*5,1*7)
+=5
+于是 index2++;
