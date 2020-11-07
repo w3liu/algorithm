@@ -4,7 +4,8 @@ import "fmt"
 
 func main() {
 	arr := []int{9, 1, 3, 2, 11, 10, 8, 7, 9, 4, 4, 6, 5, 0}
-	qSort(arr)
+	//qSort(arr)
+	arr = heapSort(arr)
 	printArr(arr)
 }
 
@@ -115,4 +116,48 @@ func qSort(arr []int) {
 	}
 	qSort(arr[:head])
 	qSort(arr[head+1:])
+}
+
+// 堆排序
+func heapSort(arr []int) []int {
+	l := len(arr) - 1
+	buildHeap(arr, l)
+	for l >= 1 {
+		swap(arr, 0, l)
+		l = l - 1
+		heapify(arr, l, 0)
+	}
+	return arr
+}
+
+// 建堆
+func buildHeap(arr []int, n int) {
+	for i := n / 2; i >= 0; i-- {
+		heapify(arr, n, i)
+	}
+}
+
+// 交换
+func swap(arr []int, x, y int) {
+	arr[x], arr[y] = arr[y], arr[x]
+}
+
+// 自顶向下堆化
+func heapify(a []int, n, i int) {
+	for {
+		left := i*2 + 1
+		right := i*2 + 2
+		var maxPos = i
+		if left <= n && a[i] < a[left] {
+			maxPos = left
+		}
+		if right <= n && a[maxPos] < a[right] {
+			maxPos = right
+		}
+		if maxPos == i {
+			break
+		}
+		swap(a, i, maxPos)
+		i = maxPos
+	}
 }
