@@ -1,4 +1,12 @@
-# 命令
+# 目录
+- algorithm 算法练习
+- ARTS 每周打卡任务
+- books 读书笔记
+- diagram 图表
+- practice 练习
+- tools 工具
+
+# 常用命令
 
 ## benchmark
 ```text
