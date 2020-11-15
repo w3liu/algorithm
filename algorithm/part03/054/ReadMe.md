@@ -1,5 +1,3 @@
-# 2020.11.09-2020.11.15
-
 ## Algorithm
 ### 1. 题目
 ```
@@ -46,22 +44,3 @@ func qSort(nums []int, k int) int {
 ```
 ### 4. 说明
 使用了快速排序，实现比较简单，但是时间复杂度比较高，还可以使用堆排序，实现起来要稍微复杂点。
-
-
-## Review
-### 1. 原文链接
-
-
-### 2. 翻译
-
-
-### 3. 点评
-
-
-## Tip
-### 标题
-
-
-## Share
-### 1.4 w字，25 张图让你彻底掌握分布式事务原理
-[https://mp.weixin.qq.com/s/2-1599_JRLtzCmHxlib1JA](https://mp.weixin.qq.com/s/2-1599_JRLtzCmHxlib1JA)
