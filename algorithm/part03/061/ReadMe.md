@@ -27,6 +27,20 @@
 
 ### 3. 解答：
 ```golang
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
 
+func swapPairs(head *ListNode) *ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+	result := head.Next
+	head.Next = swapPairs(result.Next)
+	result.Next = head
+	return result
+}
 ```
 ### 4. 说明
+采用递归，终止条件是head为空或者head.Next为空
