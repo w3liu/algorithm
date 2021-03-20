@@ -10,10 +10,22 @@
 
 ### 3. 解答：
 ```golang
+var minVal = math.MaxInt64
 
+func filter(coins []int,i, val, num, w int) {
+	if i == len(coins) -1 || val == w {
+		if val == w {
+			if minVal > num {
+				minVal = num
+			}
+		}
+		return
+	}
+	filter(coins, i+1, val, num, w) // 不放入
+	if num + coins[i+1] <= w {
+		filter(coins, i+1, val + coins[i+1], num+1, w) // 放入
+	}
+}
 ```
 ### 4. 说明
-1. 当前put函数是为了求背包能装下的最大容量;
-2. 递归终止条件：当背包装满，或者考察完所有的物品;
-3. put(i+1, cw, nums, w)和put(i+1, cw+nums[i], nums, w)两个函数对应的就是不装入背包和装入背包两种情况。 
-4. if cw+nums[i] <= w {}，这一个判断就是剪枝的过程，当装入的物品已经大于背包的容量了，就不继续执行，有效减少达不到条件的流程执行。
+采用回溯算法，逻辑简单，但是时间复杂度比较高
