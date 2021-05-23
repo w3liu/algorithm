@@ -6,7 +6,7 @@ func main() {
 
 func longestValidParentheses(s string) int {
 	var max int
-	var dp = make([]int, len(s))
+	var dp = make([]int, len(s), len(s))
 	for i, c := range s {
 		if c == '(' {
 			dp[i] = 0
