@@ -33,16 +33,21 @@
 ### 3. 解答：
 ```golang
 func maxSubArray(nums []int) int {
-	var max = math.MinInt32
+	var max int
+	var dp = make([]int, len(nums), len(nums))
 	for i := 0; i < len(nums); i++ {
-		temp := nums[i]
-		if temp > max {
-			max = temp
-		}
-		for j := i + 1; j < len(nums); j++ {
-			temp = temp + nums[j]
-			if temp > max {
-				max = temp
+		if i == 0 {
+			dp[0] = nums[0]
+			max = nums[0]
+		} else {
+			temp := dp[i-1] + nums[i]
+			if temp > nums[i] {
+				dp[i] = temp
+			} else {
+				dp[i] = nums[i]
+			}
+			if dp[i] > max {
+				max = dp[i]
 			}
 		}
 	}
@@ -50,4 +55,4 @@ func maxSubArray(nums []int) int {
 }
 ```
 ### 4. 说明
-暴力遍历，^_^
+动态规划，dp用于存放以i结尾的最大值，动态转移方程 `f(i) = max(dp[i-1] + nums[i], nums[i])`
