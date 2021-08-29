@@ -4,8 +4,8 @@ import "fmt"
 
 func main() {
 	arr := []int{9, 1, 3, 2, 11, 10, 8, 7, 9, 4, 4, 6, 5, 0}
-	//qSort(arr)
-	arr = heapSort(arr)
+	qSort(arr)
+	//arr = insert(arr)
 	printArr(arr)
 }
 
@@ -53,7 +53,7 @@ func insert(arr []int) []int {
 }
 
 // 选择排序
-func chose(arr []int) []int {
+func choose(arr []int) []int {
 	var index int
 	for i := 0; i < len(arr); i++ {
 		index = i
