@@ -1,5 +1,3 @@
-# 2021.08.30-2021.09.05
-
 ## Algorithm
 ### 1. 题目
 ```
@@ -46,21 +44,3 @@ func back(i int, tmp, nums []int, result *[][]int) {
 ```
 ### 4. 说明
 这道题采用回溯算法，Golang实现需要主义的是切片的引用及深拷贝。
-
-## Review
-### 1. 原文链接
-
-
-### 2. 翻译
-
-
-### 3. 点评
-
-
-## Tip
-### 标题
-
-
-## Share
-### 简明 VIM 练级攻略
-[https://coolshell.cn/articles/5426.html](https://coolshell.cn/articles/5426.html)
