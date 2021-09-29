@@ -112,7 +112,7 @@ func handleUpload(w http.ResponseWriter, request *http.Request, basePath string)
 }
 
 func handleDownload(w http.ResponseWriter, request *http.Request) {
-	//文件上传只允许GET方法
+	//文件下载只允许GET方法
 	if request.Method != http.MethodGet {
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		_, _ = w.Write([]byte("Method not allowed"))

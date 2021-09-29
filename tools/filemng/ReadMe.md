@@ -2,7 +2,7 @@
 ```
 set GOARCH=amd64
 set GOOS=linux
-go build -ldflags "-X main.VERSION=1.0.0 -X 'main.BUILD_TIME=`date`' -X 'main.GO_VERSION=`go version`'" -o filemng
+go build -ldflags "-X main.VERSION=1.0.0 -X 'main.BUILD_TIME=`date`' -X 'main.GO_VERSION=`go version`' -s -w" -o filemng
 ```
 
 ### 启动命令
