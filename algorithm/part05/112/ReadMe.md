@@ -1,5 +1,3 @@
-# YYYY.MM.DD-YYYY.MM.DD
-
 ## Algorithm
 ### 1. 题目
 ```
@@ -63,20 +61,3 @@ func maximalSquare(matrix [][]byte) int {
 采用动态规划，设置最长变成为maxSide，`dp[i][j]`表示以(i,j)为右下角，且只包含1的正方形的边长最大值。
 状态转移方程如下：
 dp(i,j) = min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) + 1
-
-## Review
-### 1. 原文链接
-
-
-### 2. 翻译
-
-
-### 3. 点评
-
-
-## Tip
-### 标题
-
-
-## Share
-### 标题
