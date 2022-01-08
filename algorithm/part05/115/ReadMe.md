@@ -1,5 +1,3 @@
-# 2021.01.03-2021.01.09
-
 ## Algorithm
 ### 1. 题目
 ```
@@ -78,21 +76,3 @@ func maxSlidingWindow(nums []int, k int) []int {
 ```
 ### 4. 说明
 这道题相当难啊，自己只想到了暴力解法，官方答案是采用了优先队列。
-
-## Review
-### 1. 原文链接
-
-
-### 2. 翻译
-
-
-### 3. 点评
-
-
-## Tip
-### 标题
-
-
-## Share
-### 让所有工具变成你的锤子 — 邂逅《Every Tool's a Hammer》
-[https://mp.weixin.qq.com/s/MWdbMrF2_RPBlGVqgu7Ntw](https://mp.weixin.qq.com/s/MWdbMrF2_RPBlGVqgu7Ntw)
