@@ -10,6 +10,7 @@ rpm -Uvh mysql57-community-release-el7-10.noarch.rpm
 ```
 3. 安装MySQL服务端
 ```
+rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 yum install -y mysql-community-server
 ```
 4. 启动MySQL
