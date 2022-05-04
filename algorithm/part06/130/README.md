@@ -1,5 +1,3 @@
-# 2022.04.25-2022.05.01
-
 ## Algorithm
 ### 1. 题目
 ```
@@ -97,20 +95,3 @@ func calcEquation(equations [][]string, values []float64, queries [][]string) []
 ```
 ### 4. 说明
 这道题比较难，直接copy的官方的答案，主要思路是构建图，然后再通过bfs算法进行查找。
-
-## Review
-### 1. 原文链接
-
-
-### 2. 翻译
-
-
-### 3. 点评
-
-
-## Tip
-### 标题
-
-
-## Share
-### 标题
