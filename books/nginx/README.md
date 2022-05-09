@@ -103,3 +103,91 @@ f. 限制coredump核心转存储文件的大小
 ```
 g. 指定coredump文件生成目录
 - 语法：working_directory path;
+
+7. 优化性能的配置
+a. Nginx worker进程个数
+```
+# 语法
+worker_processes number;
+# 默认
+worker_processes 1;
+```
+在master/worker运行方式下，定义worker进程的个数。
+如果模块调用不会出现阻塞式的调用，那么，有多少CPU内核就应该配置多少个进程；
+反之，如果可能出现阻塞式调用，那么需要配置稍多一些的worker进程。
+例如如果有大量的磁盘I/O操作的业务可以配置多一些的worker进程。
+b. 绑定Nginx worker进程到指定的CPU内核
+```
+# 语法
+worker_cpu_affinity cpumask[cpumask...]
+```
+例如，如果有4颗CPU内核，就可以进行如下配置：
+```
+worker_processes 4;
+worker_cpu_affinity 1000 0100 0010 0001;
+```
+c. ssl硬件加速
+```
+# 语法
+ssl_engine device;
+```
+d. 系统调用gettimeofday的执行频率
+```
+# 语法
+timer_resolution t;
+# 示例
+timer_resolution 100ms;
+```
+e. Nginx worker进程优先级设置
+```
+# 语法
+worker_priority nice;
+# 默认
+worker_priority 0;
+```
+该配置用于设置Nginx worker进程的nice优先级，nice的取值范围是：-20~+19，-20是最高优先级。
+如果希望Nginx占有更多的系统资源，可以把nice值配置得更小一些，但不建议比内核进程的nice值（通常为-5）还要小。
+8. 事件类配置项
+a. 是否打开accept锁
+```
+# 语法
+accept_nutex[on|off]
+# 默认
+accept_mutex on;
+```
+b. lock文件路径
+```
+# 语法
+lock_file path/file;
+# 默认
+lock_file logs/nginx.lock;
+```
+c. 使用accept锁后到真正建立连接之间的延迟时间
+```
+# 语法
+accept_mutex_delay Nms;
+# 默认
+accept_mutex_delay 500ms;
+```
+d. 批量建立新连接
+```
+# 语法
+multi_accept[on|off];
+# 默认
+multi_accept off;
+```
+当时间模型通知有新连接时，尽可能地对本次调度中客户端发起的所有TCP请求都建立连接。
+e. 选择事件模型
+```
+# 语法
+use[kqueue|rtsig|epoll|/dev/poll|select|poll|eventport];
+# 默认
+Nginx会自动使用最合适的事件模型。
+```
+Linux系统可以选择的事件驱动模型有poll、select、epoll三种。其中，epoll性能最高。
+f. 每个worker的最大连接数
+```
+# 语法
+worker_connections number;
+```
+定义每个worker进程可以同时处理的最大连接数。
