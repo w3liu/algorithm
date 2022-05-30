@@ -30,6 +30,34 @@
 
 ### 3. 解答：
 ```golang
+func findAnagrams(s, p string) (ans []int) {
+	sl := len(s)
+	pl := len(p)
+	ans = make([]int, 0)
+	if pl > sl {
+		return
+	}
+	var scnt, pcnt [26]int
+	for i, v := range p {
+		scnt[s[i]-'a']++
+		pcnt[v-'a']++
+	}
 
+	if scnt == pcnt {
+		ans = append(ans, 0)
+	}
+
+	for i, v := range s[:sl-pl] {
+		scnt[v-'a']--
+		scnt[s[i+pl]-'a']++
+		if scnt == pcnt {
+			ans = append(ans, i+1)
+		}
+	}
+	return
+}
 ```
 ### 4. 说明
+采用滑动窗口，需要在字符串s寻找字符串p的异位词。
+因为字符串p的异位词的长度一定与字符串p的长度相同，所以我们可以在字符串s中构造一个长度为与字符串p的长度相同的滑动窗口，并在滑动中维护窗口中每种字母的数量；
+当窗口中每种字母的数量与字符串p中每种字母的数量相同时，则说明当前窗口为字符串p的异位词。

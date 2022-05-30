@@ -1,28 +1,35 @@
 package main
 
-func main() {
+import "fmt"
 
+func main() {
+	s := "cbaebabacd"
+	p := "abc"
+	ans := findAnagrams(s, p)
+	fmt.Println(ans)
 }
 
 func findAnagrams(s, p string) (ans []int) {
-	sLen, pLen := len(s), len(p)
-	if sLen < pLen {
+	sl := len(s)
+	pl := len(p)
+	ans = make([]int, 0)
+	if pl > sl {
 		return
 	}
-
-	var sCount, pCount [26]int
-	for i, ch := range p {
-		sCount[s[i]-'a']++
-		pCount[ch-'a']++
+	var scnt, pcnt [26]int
+	for i, v := range p {
+		scnt[s[i]-'a']++
+		pcnt[v-'a']++
 	}
-	if sCount == pCount {
+
+	if scnt == pcnt {
 		ans = append(ans, 0)
 	}
 
-	for i, ch := range s[:sLen-pLen] {
-		sCount[ch-'a']--
-		sCount[s[i+pLen]-'a']++
-		if sCount == pCount {
+	for i, v := range s[:sl-pl] {
+		scnt[v-'a']--
+		scnt[s[i+pl]-'a']++
+		if scnt == pcnt {
 			ans = append(ans, i+1)
 		}
 	}
