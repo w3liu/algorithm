@@ -28,6 +28,9 @@
 
 ### 3. 解答：
 ```golang
-
+func hammingDistance(x int, y int) int {
+	return bits.OnesCount(uint(x ^ y))
+}
 ```
 ### 4. 说明
+异或，再统计1的个数即可。
