@@ -45,3 +45,29 @@ func TestCheckCircle(t *testing.T) {
 	hasCircle := checkCircle(list)
 	t.Log(hasCircle)
 }
+
+func TestMergeTwoLists(t *testing.T) {
+	list1 := &ListNode{
+		Val: 1,
+		Next: &ListNode{
+			Val: 2,
+			Next: &ListNode{
+				Val: 4,
+			},
+		},
+	}
+	list2 := &ListNode{
+		Val: 1,
+		Next: &ListNode{
+			Val: 3,
+			Next: &ListNode{
+				Val: 4,
+			},
+		},
+	}
+	ret := mergeTwoLists(list1, list2)
+	for ret != nil {
+		t.Log(ret.Val)
+		ret = ret.Next
+	}
+}
