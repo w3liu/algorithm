@@ -76,3 +76,51 @@ func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
 	}
 	return head
 }
+
+// 删除链表的倒数第 N 个结点
+func removeNthFromEnd(head *ListNode, n int) *ListNode {
+	var slow, fast *ListNode
+	slow = head
+	fast = head
+	for i := 0; i < n; i++ {
+		if fast == nil {
+			return nil
+		}
+		fast = fast.Next
+	}
+	if fast == nil {
+		slow = slow.Next
+		return slow
+	}
+	for fast.Next != nil {
+		slow = slow.Next
+		fast = fast.Next
+	}
+	slow.Next = slow.Next.Next
+	return head
+}
+
+// 链表的中间节点
+func middleNode(head *ListNode) *ListNode {
+	if head == nil {
+		return nil
+	}
+	if head.Next == nil {
+		return head
+	}
+	if head.Next.Next == nil {
+		return head.Next
+	}
+	var slow, fast *ListNode
+	slow = head
+	fast = head
+	for {
+		if fast == nil || fast.Next == nil {
+			break
+		}
+		slow = slow.Next
+		fast = fast.Next.Next
+	}
+
+	return slow
+}
