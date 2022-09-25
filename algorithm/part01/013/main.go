@@ -8,46 +8,22 @@ func main() {
 }
 
 func relativeSortArray(arr1 []int, arr2 []int) []int {
-
-	tempMap := make(map[int]int)
-	tempArr := make([]int, 0)
-	lastMap := make(map[int]int)
-	max := 0
-
-	for _, x := range arr1 {
-		have := false
-		if x > max {
-			max = x
-		}
-		for _, y := range arr2 {
-			if x == y {
-				have = true
-				if v, ok := tempMap[x]; ok {
-					tempMap[x] = v + 1
-				} else {
-					tempMap[x] = 1
-				}
+	indexMap := make(map[int]int)
+	for i, v := range arr2 {
+		indexMap[v] = i
+	}
+	for i := 0; i < len(arr1); i++ {
+		for j := i + 1; j < len(arr1); j++ {
+			vi, oki := indexMap[arr1[i]]
+			vj, okj := indexMap[arr1[j]]
+			if !oki || !okj {
+				vi = arr1[i]
+				vj = arr1[j]
 			}
-		}
-		if !have {
-			if v, ok := lastMap[x]; ok {
-				lastMap[x] = v + 1
-			} else {
-				lastMap[x] = 1
+			if vi > vj {
+				arr1[i], arr1[j] = arr1[j], arr1[i]
 			}
 		}
 	}
-	for _, x := range arr2 {
-		for i := 0; i < tempMap[x]; i++ {
-			tempArr = append(tempArr, x)
-		}
-	}
-	for x := 1; x <= max; x++ {
-		if v, ok := lastMap[x]; ok {
-			for i := 0; i < v; i++ {
-				tempArr = append(tempArr, x)
-			}
-		}
-	}
-	return tempArr
+	return arr1
 }
