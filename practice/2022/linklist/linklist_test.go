@@ -126,3 +126,33 @@ func TestMiddleNode(t *testing.T) {
 		ret = ret.Next
 	}
 }
+
+func TestDetectCycle(t *testing.T) {
+	node4 := &ListNode{
+		Val: 4,
+	}
+	node4.Next = &ListNode{
+		Val: 5,
+		Next: &ListNode{
+			Val: 6,
+			Next: &ListNode{
+				Val:  7,
+				Next: node4,
+			},
+		},
+	}
+	list := &ListNode{
+		Val: 1,
+		Next: &ListNode{
+			Val: 2,
+			Next: &ListNode{
+				Val:  3,
+				Next: node4,
+			},
+		},
+	}
+	ret := detectCycle(list)
+	if ret != nil {
+		t.Log(ret.Val)
+	}
+}

@@ -124,3 +124,29 @@ func middleNode(head *ListNode) *ListNode {
 
 	return slow
 }
+
+// 返回链表开始入环的第一个节点
+func detectCycle(head *ListNode) *ListNode {
+	fast := head
+	slow := head
+	hasCycle := false
+	for fast != nil && fast.Next != nil {
+		fast = fast.Next.Next
+		slow = slow.Next
+		if slow == fast {
+			hasCycle = true
+			break
+		}
+	}
+	if hasCycle {
+		second := head
+		for {
+			if second == slow {
+				return second
+			}
+			second = second.Next
+			slow = slow.Next
+		}
+	}
+	return nil
+}
