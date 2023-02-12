@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	result := reverse(1234)
+	result := reverse(12345)
 	fmt.Println(result)
 }
 
