@@ -26,6 +26,35 @@
 
 ### 3. 解答：
 ```
-
+func threeSumClosest1(nums []int, target int) int {
+	sort.Ints(nums)
+	var result = math.MaxInt64
+	var delta = math.MaxInt64
+	var size = len(nums)
+	for x := 0; x < size-2; x++ {
+		y := x + 1
+		z := size - 1
+		for y < z {
+			val := nums[x] + nums[y] + nums[z]
+			if val == target {
+				return val
+			}
+			sub := getAbs(val - target)
+			if delta > sub {
+				delta = sub
+				result = val
+			}
+			if val > target {
+				z--
+			} else {
+				y++
+			}
+		}
+	}
+	return result
+}
 ```
 ### 4. 说明
+1. 先排序
+2. 遍历数组nums作为第一数字
+3. 后面两个数组采用头尾双指针的方式移动并计算
